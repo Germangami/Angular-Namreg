@@ -1,20 +1,36 @@
 {
 	"root": true,
+	"env": {
+		"browser": true,
+		"es6": true,
+		"node": true
+	},
+	"parser": "@babel/eslint-parser",
+	"parserOptions": {
+		"ecmaFeatures": {
+			"legacyDecorators": true
+		},
+		"requireConfigFile": false
+	},
 	"ignorePatterns": ["projects/**/*"],
 	"overrides": [
 		{
 			"files": ["*.ts"],
-			"extends": [
-				"eslint:recommended",
-				"plugin:@typescript-eslint/recommended",
-				"plugin:@angular-eslint/recommended",
-				"plugin:@angular-eslint/template/process-inline-templates"
-			],
+			"extends": ["eslint-config-airbnb-base", "plugin:prettier/recommended"],
 			"rules": {
 				"lines-between-class-members": "warn",
 				"no-var": "error",
 				"semi": "error",
-				"no-console": "warn",
+				"no-console": ["error", { "allow": ["info", "assert", "warn", "error"] }],
+				"@typescript-eslint/no-duplicate-imports": "error",
+				"no-implicit-coercion": "error",
+				"no-useless-constructor": "off",
+				"@typescript-eslint/no-useless-constructor": ["error"],
+				"@typescript-eslint/prefer-readonly": ["error"],
+				"eqeqeq": ["error", "always"],
+				"indent": ["error", "tab"],
+				"rxjs/no-ignored-observable": "error",
+				"@typescript-eslint/explicit-member-accessibility": ["error", { "accessibility": "no-public" }],
 				"no-restricted-syntax": [
 					"error",
 					{
@@ -22,9 +38,7 @@
 						"message": "Unexpected property on console object was called"
 					}
 				],
-				"eqeqeq": ["error", "always"],
 				"no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
-				"indent": ["error", "tab"],
 				"@angular-eslint/directive-selector": [
 					"error",
 					{
@@ -61,8 +75,22 @@
 		},
 		{
 			"files": ["*.html"],
+			"plugins": ["@html-eslint"],
+			"parser": "@html-eslint/parser",
 			"extends": ["plugin:@angular-eslint/template/recommended"],
-			"rules": {}
+			"rules": {
+				"@html-eslint/no-duplicate-attrs": "error",
+				"@html-eslint/no-duplicate-id": "error",
+				"@html-eslint/no-target-blank": "error",
+				"@html-eslint/require-closing-tags": "error",
+				"@html-eslint/require-li-container": "error",
+				"@html-eslint/no-multiple-h1": "error",
+				"@html-eslint/require-img-alt": "error",
+				"@html-eslint/no-extra-spacing-attrs": ["error", { "enforceBeforeSelfClose": true }],
+				"@html-eslint/no-multiple-empty-lines": "error",
+				"@html-eslint/no-trailing-spaces": "error",
+				"@html-eslint/quotes": "error"
+			}
 		}
 	]
 }
