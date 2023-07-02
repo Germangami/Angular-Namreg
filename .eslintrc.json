@@ -11,6 +11,20 @@
 				"plugin:@angular-eslint/template/process-inline-templates"
 			],
 			"rules": {
+				"lines-between-class-members": "warn",
+				"no-var": "error",
+				"semi": "error",
+				"no-console": "warn",
+				"no-restricted-syntax": [
+					"error",
+					{
+						"selector": "CallExpression[callee.object.name='console'][callee.property.name!=/^(log|warn|error|info|trace)$/]",
+						"message": "Unexpected property on console object was called"
+					}
+				],
+				"eqeqeq": ["error", "always"],
+				"no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
+				"indent": ["error", "tab"],
 				"@angular-eslint/directive-selector": [
 					"error",
 					{
