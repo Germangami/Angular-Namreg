@@ -1,0 +1,36 @@
+<mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title> {{product?.name}} </mat-card-title>
+      <mat-card-subtitle> {{product?.subCategory}} </mat-card-subtitle>
+    </mat-card-header>
+
+    <div class="galerey">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+      <img mat-card-image [src]="product?.images?.[0]?.url" alt="Photo of a Shiba Inu">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+    </div>
+
+    
+    <mat-card-content>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia incidunt libero debitis veritatis pariatur 
+        quo in! Eveniet illo commodi excepturi maxime porro, iusto quidem quasi, sit debitis nobis itaque quibusdam 
+      </p>
+
+      <div class="rating">
+        <div>
+          <mat-icon [class.star-active]="isStarActive(1)">star_border</mat-icon>
+          <mat-icon [class.star-active]="isStarActive(1)">star_border</mat-icon>
+          <mat-icon [class.star-active]="isStarActive(1)">star_border</mat-icon>
+          <mat-icon [class.star-active]="isStarActive(1)">star_border</mat-icon>
+          <mat-icon [class.star-active]="isStarActive(1)">star_border</mat-icon>
+        </div>
+
+      </div>
+
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-button (click)="onProductBuy($event)">Buy {{86}} $</button>
+    </mat-card-actions>
+</mat-card>
