@@ -1,16 +1,15 @@
 <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side" >
       <p>Auto-resizing sidenav</p>
+      <mat-list role="list">
+        <mat-list-item appInsertBorderDirective role="listitem">Item 1</mat-list-item>
+        <mat-list-item appInsertBorderDirective role="listitem">Item 2</mat-list-item>
+        <mat-list-item appInsertBorderDirective role="listitem">Item 3</mat-list-item>
+      </mat-list>
     </mat-drawer>
-  
-    <!-- <div class="example-sidenav-content">
-      <button type="button" mat-button (click)="toogleMatDraverState()">
-        Toggle sidenav
-      </button>
-    </div> -->
 
     <div class="example-sidenav-content">
-      <h2 #test *ngIf="isView">CONTENT</h2>
+      <ng-content></ng-content>
     </div>
   
 </mat-drawer-container>

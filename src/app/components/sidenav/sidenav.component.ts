@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ContentChild, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
@@ -6,35 +6,25 @@ import { MatDrawer } from '@angular/material/sidenav';
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss']
 })
-export class SidenavComponent implements OnInit, AfterViewInit {
-
+export class SidenavComponent {
   @ViewChild('drawer',{static: false})
   private readonly matDrover: MatDrawer | undefined;
 
-  @ViewChild('test', {static: false})
-  private readonly test: ElementRef | undefined;
+  @ViewChild('listViewPort', {read: ViewContainerRef, static: true})
+  private readonly listViewPort!: ViewContainerRef;
+
+  @ContentChild('menuItems', {static: true})
+  private readonly menuItems!: TemplateRef<unknown>;
 
   isView = true;
 
   ngOnInit() {
-    console.log(this.test); 
+    
   }
-
-  ngAfterViewInit(): void {
-    console.log(this.test);
-  }
-
-
-
-  // toogleMatDraverState() {
-  //   this.matDrover?.toggle();
-  // }
-
-  // @ViewChild('drawer') 
-  // private readonly matDrover: MatDrawer | undefined;
 
   toogleMatDraverState() {
     this.matDrover?.toggle();
     this.isView = !this.isView;
   }
+
 }

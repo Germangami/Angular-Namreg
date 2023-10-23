@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { SidenavComponent } from './sidenav.component';
 import { MatButtonModule } from '@angular/material/button';
+import {MatListModule} from '@angular/material/list';
+import { InsertBorderModule } from 'src/app/shared/insert-border/insert-border.module';
 
 
 @NgModule({
@@ -12,7 +14,9 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     CommonModule,
     MatSidenavModule,
-    MatButtonModule
+    MatButtonModule,
+    MatListModule,
+    InsertBorderModule
   ],
   exports: [
     SidenavComponent

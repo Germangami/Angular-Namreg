@@ -6,22 +6,23 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
-
+export class AppComponent implements OnInit {
 
   @ViewChild('sidenavComponent') 
   private readonly sidenav: SidenavComponent | undefined;
 
   title = 'an-namreg-shop';
 
-  isSidenavOpenedParent: boolean = false;
+  isShowSecond: boolean = false;
+
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.isShowSecond = true;
+    }, 5000)
+  }
 
   appClick() {
     this.sidenav?.toogleMatDraverState();
-  }
-
-  ngOnInit(): void {
-    
   }
 
 }

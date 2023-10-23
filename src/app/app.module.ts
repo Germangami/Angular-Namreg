@@ -7,6 +7,8 @@ import { HeaderModule } from './components/header/header.module';
 import { ProductModule } from './pages/product/product.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { SidenavModule } from './components/sidenav/sidenav.module';
+import {MatListModule} from '@angular/material/list';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { SidenavModule } from './components/sidenav/sidenav.module';
     HeaderModule,
     BrowserAnimationsModule,
     ProductModule,
-    SidenavModule
+    SidenavModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
