@@ -1,10 +1,11 @@
-import { Component, ContentChild, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
-  styleUrls: ['./sidenav.component.scss']
+  styleUrls: ['./sidenav.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SidenavComponent {
   @ViewChild('drawer',{static: false})
@@ -18,11 +19,18 @@ export class SidenavComponent {
 
   isView = true;
 
-  ngOnInit() {
-    
+  isRed = false;
+
+  constructor( private readonly changeDetectorRef: ChangeDetectorRef ) {
+
+  }
+
+  changeColor() {
+    this.isRed = !this.isRed
   }
 
   toogleMatDraverState() {
+    this.changeDetectorRef.markForCheck();
     this.matDrover?.toggle();
     this.isView = !this.isView;
   }

@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductComponent } from './product.component';
 import { CardModule } from './card/card.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 @NgModule({
   declarations: [
@@ -9,7 +11,8 @@ import { CardModule } from './card/card.module';
   ],
   imports: [
     CommonModule,
-    CardModule
+    CardModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     ProductComponent

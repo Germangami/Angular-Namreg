@@ -4,6 +4,7 @@ import { CardComponent } from './card.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon'
+import { CarouselModule } from 'src/app/shared/carousel/carousel.module';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import {MatIconModule} from '@angular/material/icon'
     CommonModule,
     MatButtonModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    CarouselModule
   ],
   exports: [
     CardComponent
