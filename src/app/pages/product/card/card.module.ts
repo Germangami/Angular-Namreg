@@ -16,7 +16,7 @@ import { CarouselModule } from 'src/app/shared/carousel/carousel.module';
     MatButtonModule,
     MatCardModule,
     MatIconModule,
-    CarouselModule
+    CarouselModule,
   ],
   exports: [
     CardComponent

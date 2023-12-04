@@ -1,17 +1,27 @@
 :host {
+    margin-left: 20px;
+    margin-top: 20px;
+    width: 285px;
+    height: 500px;
+    display: block;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    padding: 4px;
+    box-sizing: border-box;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    flex-direction: column;
 }
 
-.example-card {
-    margin: 10px;
-    max-width: 400px;
-    max-height: 650px;
+.card mat-card-subtitle {
+    text-align: right;
 }
 
-.mat-mdc-card-header {
-    text-align: center;
+.raiting {
+    display: flex;
+    align-items: center;
 }
 
 .star-active {
@@ -19,38 +29,17 @@
     text-shadow: 0 0 2px black;
 }
 
-.rating {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
-
 .galerey {
-
     height: 100%;
     min-height: 0;
     display: flex;
     align-items: center;
     margin-bottom: 8px;
-
-    img {
-        width: 100%;
-        display: block;
-        overflow: hidden;
-        margin: 0 8px;
-    }
-
-    mat-icon {
-        background-color: white;
-        border: none;
-    }
-
-    mat-icon:hover {
-        transform: scale(1.3);
-    }
 }
 
-.mdc-card__actions {
-    justify-content: flex-end;
-    padding: 0 16ox;
+.galerey img {
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    margin: 0 8px;
 }

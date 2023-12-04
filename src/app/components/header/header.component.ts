@@ -10,12 +10,5 @@ export class HeaderComponent {
 
   @Output() changeSidenavOpen = new EventEmitter<void>();
 
-  @Input() test: any;
 
-  constructor() {
-    // let count = 0;
-    // setInterval(()=> {
-    //   count += 1;
-    // }, 1000);
-  }
 }

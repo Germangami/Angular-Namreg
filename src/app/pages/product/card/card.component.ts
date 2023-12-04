@@ -11,17 +11,17 @@ import { IProduct } from 'src/app/shared/product.interface';
 export class CardComponent {
 
   @Input() product: IProduct | undefined;
-  @Input() user: string | undefined;
 
   @Output() buy = new EventEmitter<IProduct['_id']>();
 
-  constructor( ) { }
+  onProductBuy(event: Event) {
+      event.stopPropagation();
 
-  ngOnInit(): void {
-    
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      this.buy.emit(this.product!._id);
   }
 
   isStarActive(starIndex: number): boolean {
-    return !!this.product && this.product.rating >= starIndex;
+      return !!this.product && this.product.rating >= starIndex;
   }
 }

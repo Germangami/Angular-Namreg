@@ -1,39 +1,33 @@
-<mat-card class="example-card">
-    <mat-card-header>
-      <mat-card-title> {{product?.name}} </mat-card-title>
-      <mat-card-subtitle> {{product?.subCategory}} </mat-card-subtitle>
-    </mat-card-header>
+<mat-card class="card">
+  <mat-card-header>
+      <mat-card-title>{{ product?.name }}</mat-card-title>
+  </mat-card-header>
+  <div *appCarousel="let img of product?.images; let next = next; let back = back"
+      class="galerey">
 
-    <ng-template appCarousel [appCarouselOf]="product?.images" let-img let-next="next" let-back="back">
-
-      <div class="galerey">
-        <mat-icon (click)="back()">keyboard_arrow_left</mat-icon>
-      <img mat-card-image [src]="img?.url" alt="Photo of a Shiba Inu">
-        <mat-icon (click)="next()">keyboard_arrow_right</mat-icon>
+      <button mat-icon-button (click)="back(); $event.stopPropagation()">
+          <mat-icon>chevron_left</mat-icon>
+      </button>
+      <img mat-card-image alt="Product photo" [src]="img.url" />
+      <button mat-icon-button (click)="next(); $event.stopPropagation()">
+          <mat-icon>chevron_right</mat-icon>
+      </button>
+      
+  </div>
+  <mat-card-content>
+      <p>Отзывы: {{ product?.feedbacksCount }}</p>
+      <div class="raiting">
+          Рейтинг:
+          <mat-icon [class.star-active]="isStarActive(1)">star</mat-icon>
+          <mat-icon [class.star-active]="isStarActive(2)">star</mat-icon>
+          <mat-icon [class.star-active]="isStarActive(3)">star</mat-icon>
+          <mat-icon [class.star-active]="isStarActive(4)">star</mat-icon>
+          <mat-icon [class.star-active]="isStarActive(5)">star</mat-icon>
       </div>
-
-    </ng-template>
-    
-    <mat-card-content>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia incidunt libero debitis veritatis pariatur 
-        quo in! Eveniet illo commodi excepturi maxime porro, iusto quidem quasi, sit debitis nobis itaque quibusdam 
-      </p>
-
-      <div class="rating">
-        <div>
-          <mat-icon [class.star-active]="isStarActive(1)">star_border</mat-icon>
-          <mat-icon [class.star-active]="isStarActive(1)">star_border</mat-icon>
-          <mat-icon [class.star-active]="isStarActive(1)">star_border</mat-icon>
-          <mat-icon [class.star-active]="isStarActive(1)">star_border</mat-icon>
-          <mat-icon [class.star-active]="isStarActive(1)">star_border</mat-icon>
-        </div>
-
-      </div>
-
-    </mat-card-content>
-
-    <mat-card-actions>
-      <button mat-button>Buy {{86}} $</button>
-    </mat-card-actions>
+  </mat-card-content>
+  <mat-card-actions class="mat-card-actions-align-end">
+      <button mat-button [disabled]="!this.product" (click)="onProductBuy($event)">
+        Buy {{ product?.price | currency : 'USD' : 'symbol-narrow' : '1.0-0' }}
+    </button>
+  </mat-card-actions>
 </mat-card>

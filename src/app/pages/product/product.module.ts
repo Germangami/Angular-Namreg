@@ -7,7 +7,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
-    ProductComponent
+    ProductComponent,
   ],
   imports: [
     CommonModule,
@@ -15,7 +15,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatProgressSpinnerModule
   ],
   exports: [
-    ProductComponent
+    ProductComponent,
   ]
 })
 export class ProductModule { }
