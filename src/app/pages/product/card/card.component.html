@@ -2,18 +2,22 @@
   <mat-card-header>
       <mat-card-title>{{ product?.name }}</mat-card-title>
   </mat-card-header>
-  <div *appCarousel="let img of product?.images; let next = next; let back = back"
-      class="galerey">
 
-      <button mat-icon-button (click)="back(); $event.stopPropagation()">
+  <ng-template [appCarousel]="product!.images" let-next="next" let-back="back" let-implicit="img" let-context="index">
+
+  <div class="galerey" >
+
+      <button mat-icon-button (click)="back()">
           <mat-icon>chevron_left</mat-icon>
       </button>
-      <img mat-card-image alt="Product photo" [src]="img.url" />
-      <button mat-icon-button (click)="next(); $event.stopPropagation()">
+      <img mat-card-image alt="Product photo" [src]="implicit"/>
+      <button mat-icon-button (click)="next()">
           <mat-icon>chevron_right</mat-icon>
       </button>
-      
   </div>
+  
+</ng-template>
+
   <mat-card-content>
       <p>Отзывы: {{ product?.feedbacksCount }}</p>
       <div class="raiting">
@@ -27,7 +31,7 @@
   </mat-card-content>
   <mat-card-actions class="mat-card-actions-align-end">
       <button mat-button [disabled]="!this.product" (click)="onProductBuy($event)">
-        Buy {{ product?.price | currency : 'USD' : 'symbol-narrow' : '1.0-0' }}
+        Buy {{product?.price | customCurrency : 'zł'}}
     </button>
   </mat-card-actions>
 </mat-card>

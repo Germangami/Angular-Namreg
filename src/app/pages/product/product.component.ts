@@ -28,12 +28,11 @@ export class ProductComponent {
     setTimeout(() => {
       this.changeDetectorRef.markForCheck();
       this.products = productsMock.map(item => ({...item, rating: 5}));
-    }, 5000);
+    }, 1000);
     this.changeDetectorRef.detectChanges() 
   }
 
   get getFilteredProduct() {
-    console.log('tick');
 
     return this.products; //sorting
   }

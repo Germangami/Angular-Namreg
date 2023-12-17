@@ -6,71 +6,84 @@ import { BehaviorSubject, map, tap } from 'rxjs';
 @Directive({
   selector: '[appCarousel]'
 })
-export class CarouselDirective implements OnChanges, OnInit {
+export class CarouselDirective implements OnInit, OnChanges  {
 
-  @Input() appCarouselOf: IProductImage[] | undefined;
+  currentIndex$ = new BehaviorSubject<number>(0);
 
-  currentIndex = new BehaviorSubject<number>(0);
+  @Input() appCarousel!: IProductImage[];
 
-  constructor(private template: TemplateRef<any>, 
-              private viewContainerRef: ViewContainerRef) {
-    
+  constructor(private readonly containerRef: ViewContainerRef,
+              private readonly template: TemplateRef<any>) {
+
+  }
+
+  ngOnInit(): void {
+    console.log(this.appCarousel, 'APP CAROUSEL')
+    this.initView();
   }
 
   ngOnChanges({appCarouselOf}: SimpleChanges): void {
     if (appCarouselOf) {
-      this.updateView();
+      if (!this.appCarousel?.length) {
+        this.containerRef.clear();
+      }
+      this.currentIndex$.next(0);
+
     }
   }
 
-  ngOnInit(): void {
-    this.listenCurrentIndex();
-  }
-
-  updateView() {
-    this.viewContainerRef.clear();
-    this.currentIndex.next(0);
-  }
-
-  listenCurrentIndex() {
-    this.currentIndex
-    .pipe(
-      map((item: any) => this.getCurrentIndex(item))
-    ).subscribe(contex => {
-       this.viewContainerRef.clear();
-      this.viewContainerRef.createEmbeddedView(this.template, contex);
+  initView() {
+    this.currentIndex$.pipe(
+      map(currentIndex => this.createContext(currentIndex))
+    ).subscribe((context)=> {
+      this.containerRef.clear();
+      this.containerRef.createEmbeddedView(this.template, context)
     })
   }
 
-  getCurrentIndex(currentIndex: number): any {
-    return {
-      $implicit: this.appCarouselOf![currentIndex],
-      index: currentIndex,
-      appCarouselOf: this.appCarouselOf,
-      next: () => {
-        this.next();
-      },
-      back: () => {
-        this.back();
+  createContext(index: number) {
+    if (this.appCarousel) {
+      console.log('create CONTEXT')
+      console.log({
+        $implicit: this.appCarousel[index].url,
+        index: index,
+        next: () => {
+          this.next();
+        },
+        back: ()=> {
+          this.back();
+        }
+      }, 'CONTEXT OBJ');
+
+      return {
+        img: this.appCarousel[index].url,
+        index: index,
+        next: () => {
+          this.next();
+        },
+        back: ()=> {
+          this.back();
+        }
       }
     }
-  }
-
-  createView(img: IProductImage) {
-    const context = {$implicit: img};
-    this.viewContainerRef.createEmbeddedView(this.template, context)
+    return null;
   }
 
   next() {
-    const nextIndex = this.currentIndex.value + 1;
-    const newIndex = nextIndex < this.appCarouselOf!.length ? nextIndex : 0;
-    this.currentIndex.next(newIndex);
+    const nextIndex = this.currentIndex$.value + 1;
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const newIndex = nextIndex < this.appCarousel!.length ? nextIndex : 0;
+
+    this.currentIndex$.next(newIndex);
   }
 
   back() {
-    const previousIndex = this.currentIndex.value - 1;
-    const newIndex = previousIndex >= 0 ? previousIndex : this.appCarouselOf!.length -1;
-    this.currentIndex.next(previousIndex);
+    const previousIndex = this.currentIndex$.value - 1;
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const newIndex = previousIndex >= 0 ? previousIndex : this.appCarousel!.length - 1;
+
+    this.currentIndex$.next(newIndex);
   }
- 
+
+  
 }

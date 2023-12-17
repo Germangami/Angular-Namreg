@@ -16,7 +16,6 @@ export class CardComponent {
 
   onProductBuy(event: Event) {
       event.stopPropagation();
-
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       this.buy.emit(this.product!._id);
   }
@@ -24,4 +23,14 @@ export class CardComponent {
   isStarActive(starIndex: number): boolean {
       return !!this.product && this.product.rating >= starIndex;
   }
+
+  changeValue() {
+
+  }
+
+  // getPrice(value: number | null | undefined) {
+  //   console.log('GET PRICE', value)
+  //   return `${value}`
+  // }
+
 }

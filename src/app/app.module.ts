@@ -8,6 +8,7 @@ import { ProductModule } from './pages/product/product.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { SidenavModule } from './components/sidenav/sidenav.module';
 import {MatListModule} from '@angular/material/list';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {MatListModule} from '@angular/material/list';
     BrowserAnimationsModule,
     ProductModule,
     SidenavModule,
-    MatListModule
+    MatListModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
