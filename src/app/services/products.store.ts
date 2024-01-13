@@ -8,15 +8,20 @@ import { ProductsApiService } from "./products.api.service";
 export class ProductsStore {
     
     private readonly productsStore$ = new BehaviorSubject<IProduct[] | null>(null);
-
-    get products$(): Observable<IProduct[] | null> {
-        return this.productsStore$.asObservable();
-    }
+    private readonly currentProductStore$ = new BehaviorSubject<IProduct | null>(null);
 
     constructor(private productsApiService: ProductsApiService) { 
         this.productsApiService.products$.subscribe(products => {
             this.productsStore$.next(products);
         })
+    }
+
+    get products$(): Observable<IProduct[] | null> {
+        return this.productsStore$.asObservable();
+    }
+
+    get currentProduct$(): Observable<IProduct | null> {
+        return this.currentProductStore$.asObservable();
     }
 
 }
