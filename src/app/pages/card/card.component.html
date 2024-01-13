@@ -3,15 +3,19 @@
       <mat-card-title>{{ product?.name }}</mat-card-title>
   </mat-card-header>
 
-  <ng-template [appCarousel]="product!.images" let-next="next" let-back="back" let-implicit="img" let-context="index">
+  <ng-template 
+  [appCarousel]="product!.images" 
+  let-next="next" let-back="back" 
+  let-implicit="img" 
+  let-context="index">
 
   <div class="galerey" >
 
-      <button mat-icon-button (click)="back()">
+      <button mat-icon-button (click)="back(); $event.stopPropagation()">
           <mat-icon>chevron_left</mat-icon>
       </button>
       <img mat-card-image alt="Product photo" [src]="implicit"/>
-      <button mat-icon-button (click)="next()">
+      <button mat-icon-button (click)="next(); $event.stopPropagation()">
           <mat-icon>chevron_right</mat-icon>
       </button>
   </div>

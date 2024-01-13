@@ -1,0 +1,36 @@
+<div *ngIf="productsList$ | async as productsList; else: loader">
+    
+    <div class="cards-container" *ngIf="productsList.length > 0">
+        <ng-template #name 
+        appPagination 
+        [allProductList]="productsList" 
+        let-groupItems="productsGroup" 
+        let-next="next" 
+        let-back="back">
+            
+          <div class="card-container" *ngFor="let product of groupItems">
+                <app-card
+                    [product]="product"
+                    [routerLink]="'/product/' + product._id">
+                </app-card>
+          </div>  
+
+            <div class="pagination-button">
+                <button mat-raised-button color="primary" (click)="next()">	
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                    Next Page
+                </button>
+                <button mat-raised-button color="primary" (click)="back()">
+                    <mat-icon>keyboard_arrow_left</mat-icon>
+                    Previous Page
+                </button>
+            </div>
+
+        </ng-template>
+    </div>
+</div>
+
+
+<ng-template #loader>
+    <mat-spinner></mat-spinner>
+</ng-template>

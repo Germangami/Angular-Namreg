@@ -18,7 +18,6 @@ export class CarouselDirective implements OnInit, OnChanges  {
   }
 
   ngOnInit(): void {
-    console.log(this.appCarousel, 'APP CAROUSEL')
     this.initView();
   }
 
@@ -43,18 +42,6 @@ export class CarouselDirective implements OnInit, OnChanges  {
 
   createContext(index: number) {
     if (this.appCarousel) {
-      console.log('create CONTEXT')
-      console.log({
-        $implicit: this.appCarousel[index].url,
-        index: index,
-        next: () => {
-          this.next();
-        },
-        back: ()=> {
-          this.back();
-        }
-      }, 'CONTEXT OBJ');
-
       return {
         img: this.appCarousel[index].url,
         index: index,
@@ -71,18 +58,20 @@ export class CarouselDirective implements OnInit, OnChanges  {
 
   next() {
     const nextIndex = this.currentIndex$.value + 1;
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const newIndex = nextIndex < this.appCarousel!.length ? nextIndex : 0;
 
     this.currentIndex$.next(newIndex);
+    console.log('NEXT');
+    
   }
 
   back() {
     const previousIndex = this.currentIndex$.value - 1;
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const newIndex = previousIndex >= 0 ? previousIndex : this.appCarousel!.length - 1;
 
     this.currentIndex$.next(newIndex);
+    console.log('BACK');
+    
   }
 
   

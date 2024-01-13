@@ -8,7 +8,11 @@ import { Component, EventEmitter, Output, Input, ChangeDetectionStrategy } from 
 })
 export class HeaderComponent {
 
-  @Output() changeSidenavOpen = new EventEmitter<void>();
+  @Output() menuClickOutput = new EventEmitter<void>();
 
+  constructor() { }
 
+  changeSidenavState() {
+    this.menuClickOutput.emit();
+  }
 }

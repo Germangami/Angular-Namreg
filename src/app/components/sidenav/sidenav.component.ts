@@ -11,14 +11,6 @@ export class SidenavComponent {
   @ViewChild('drawer',{static: false})
   private readonly matDrover: MatDrawer | undefined;
 
-  @ViewChild('listViewPort', {read: ViewContainerRef, static: true})
-  private readonly listViewPort!: ViewContainerRef;
-
-  @ContentChild('menuItems', {static: true})
-  private readonly menuItems!: TemplateRef<unknown>;
-
-  isView = true;
-
   isRed = false;
 
   constructor( private readonly changeDetectorRef: ChangeDetectorRef ) {
@@ -32,7 +24,6 @@ export class SidenavComponent {
   toogleMatDraverState() {
     this.changeDetectorRef.markForCheck();
     this.matDrover?.toggle();
-    this.isView = !this.isView;
   }
 
 }

@@ -1,21 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductComponent } from './product.component';
-import { CardModule } from './card/card.module';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { CardModule } from '../card/card.module';
+
 
 
 @NgModule({
   declarations: [
-    ProductComponent,
+    ProductComponent
   ],
   imports: [
     CommonModule,
-    CardModule,
-    MatProgressSpinnerModule
+    CardModule
   ],
   exports: [
-    ProductComponent,
+    ProductComponent
   ]
 })
 export class ProductModule { }

@@ -1,5 +1,4 @@
 import {  ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { Route } from '@angular/router';
 import { IProduct } from 'src/app/shared/product.interface';
 
 @Component({
@@ -16,21 +15,15 @@ export class CardComponent {
 
   onProductBuy(event: Event) {
       event.stopPropagation();
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       this.buy.emit(this.product!._id);
+  }
+
+  ngOnInit() {
+    
   }
 
   isStarActive(starIndex: number): boolean {
       return !!this.product && this.product.rating >= starIndex;
   }
-
-  changeValue() {
-
-  }
-
-  // getPrice(value: number | null | undefined) {
-  //   console.log('GET PRICE', value)
-  //   return `${value}`
-  // }
 
 }

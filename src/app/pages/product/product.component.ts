@@ -1,44 +1,34 @@
-import { ApplicationRef, ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ProductsApiService } from 'src/app/services/products.api.service';
+import { ProductsStore } from 'src/app/services/products.store';
 import { IProduct } from 'src/app/shared/product.interface';
 import { productsMock } from 'src/app/shared/products.mock';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./product.component.scss']
 })
-export class ProductComponent {
-  @Input() testProduct: any;
+export class ProductComponent implements OnInit {
 
-  counter: any;
-
+  soloProduct!: IProduct;
   products!: IProduct[];
 
+  constructor(private productsApiService: ProductsApiService,
+              private productsStore: ProductsStore) {
 
-  constructor(private readonly changeDetectorRef: ChangeDetectorRef,
-              private readonly applicationRef: ApplicationRef) { }
-
+  }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.changeDetectorRef.markForCheck();
-      this.products = productsMock;
-    }, 3000);
-    setTimeout(() => {
-      this.changeDetectorRef.markForCheck();
-      this.products = productsMock.map(item => ({...item, rating: 5}));
-    }, 1000);
-    this.changeDetectorRef.detectChanges() 
-  }
+    // this.productsApiService.products$.subscribe(x => {
+    //   if(x) {
+    //     console.log(x.data.items[0], 'PA PA PA PA');
+    //     this.soloProduct = x.data.items;
+    //   }
+      
+    // })
 
-  get getFilteredProduct() {
-
-    return this.products; //sorting
-  }
-
-  trackBy(index: number, item: IProduct) {
-    return item._id;
+    this.products = productsMock.map(item => ({...item, rating: 5}));
   }
 
 }
