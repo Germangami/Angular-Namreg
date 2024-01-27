@@ -15,6 +15,10 @@
     flex-direction: column;
 }
 
+.card mat-card-title {
+    text-align: center;
+}
+
 .card mat-card-subtitle {
     text-align: right;
 }

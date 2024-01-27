@@ -1,6 +1,5 @@
-import { ChangeDetectionStrategy, Component, Inject, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-import { ProductsStore } from './services/products.store';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +7,7 @@ import { ProductsStore } from './services/products.store';
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
   title = 'an-namreg-shop';
 
@@ -16,11 +15,7 @@ export class AppComponent implements OnInit {
   private readonly sidenav: SidenavComponent | undefined;
 
 
-  constructor(private productStore: ProductsStore ) { }
-
-  ngOnInit(): void {
-    this.productStore.products$.subscribe(x => console.log(x, '1!@*#^&!*(@#&!*(@'))
-  }
+  constructor() { }
 
   onCLick() {
     this.sidenav?.toogleMatDraverState();

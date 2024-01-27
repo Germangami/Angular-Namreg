@@ -1,1 +1,10 @@
-<app-card [product]="products[0]"></app-card>
+<div *ngIf="currProd$ | async as currentProduct" class="test">
+
+    <app-card [product]="currentProduct"></app-card>
+    <div>
+        <button (click)="navigateOnDescription()">Open description</button>
+        <button (click)="navigateOnType()">Open type</button>
+        <router-outlet></router-outlet>
+    </div>
+
+<div>

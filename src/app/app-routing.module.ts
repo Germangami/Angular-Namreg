@@ -4,6 +4,8 @@ import { ProductsListComponent } from './pages/products-list/products-list.compo
 import { ProductComponent } from './pages/product/product.component';
 import { NotFoundModule } from './pages/not-found/not-found.module';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { DescriptionComponent } from './pages/product/description/description.component';
+import { TypeComponent } from './pages/product/type/type.component';
 
 const routes: Routes = [
   {
@@ -17,7 +19,22 @@ const routes: Routes = [
   },
   {
     path: 'product/:id',
-    component: ProductComponent
+    component: ProductComponent,
+    children: [
+      {
+        path: 'description',
+      component: DescriptionComponent
+      },
+      {
+        path: 'type',
+        component: TypeComponent
+      },
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'description'
+      }
+    ]
   },
   {
     path: '**',

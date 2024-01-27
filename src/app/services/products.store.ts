@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject, Observable, filter, tap } from "rxjs";
 import { IProduct } from "../shared/product.interface";
 import { ProductsApiService } from "./products.api.service";
 
@@ -20,8 +20,14 @@ export class ProductsStore {
         return this.productsStore$.asObservable();
     }
 
-    get currentProduct$(): Observable<IProduct | null> {
+    get currentProduct(): Observable<IProduct | null> {
         return this.currentProductStore$.asObservable();
+    }
+
+    currentProduct$(productId: string) {
+        const productPreview = this.productsStore$.value?.find(({_id}) => _id === productId);
+
+        this.currentProductStore$.next(productPreview || null);
     }
 
 }
