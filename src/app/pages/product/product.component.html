@@ -1,10 +1,16 @@
-<div *ngIf="currProd$ | async as currentProduct" class="test">
-
-    <app-card [product]="currentProduct"></app-card>
+<ng-container *ngIf="currProd$ | async as currentProduct; else spiner" class="test">
     <div>
-        <button (click)="navigateOnDescription()">Open description</button>
-        <button (click)="navigateOnType()">Open type</button>
-        <router-outlet></router-outlet>
-    </div>
 
-<div>
+        <app-card [product]="currentProduct"></app-card>
+        <div>
+            <button (click)="navigateOnDescription()">Open description</button>
+            <button (click)="navigateOnType()">Open type</button>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</ng-container>
+
+
+<ng-template #spiner>
+    <mat-spinner class="spiner"></mat-spinner>
+</ng-template>

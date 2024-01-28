@@ -1,6 +1,6 @@
 import { Directive, Input, OnChanges, OnInit, SimpleChanges, TemplateRef, ViewContainerRef } from '@angular/core';
 import { IProductImage } from '../product-image.interface';
-import { BehaviorSubject, map, tap } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 
 
 @Directive({
@@ -61,8 +61,6 @@ export class CarouselDirective implements OnInit, OnChanges  {
     const newIndex = nextIndex < this.appCarousel!.length ? nextIndex : 0;
 
     this.currentIndex$.next(newIndex);
-    console.log('NEXT');
-    
   }
 
   back() {
@@ -70,8 +68,6 @@ export class CarouselDirective implements OnInit, OnChanges  {
     const newIndex = previousIndex >= 0 ? previousIndex : this.appCarousel!.length - 1;
 
     this.currentIndex$.next(newIndex);
-    console.log('BACK');
-    
   }
 
   

@@ -5,6 +5,7 @@ import { CardModule } from '../card/card.module';
 import { DescriptionComponent } from './description/description.component';
 import { TypeComponent } from './type/type.component';
 import { RouterModule } from '@angular/router';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 
@@ -17,7 +18,8 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     CardModule,
-    RouterModule
+    RouterModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     ProductComponent

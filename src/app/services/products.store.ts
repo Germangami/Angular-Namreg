@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable, filter, tap } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { IProduct } from "../shared/product.interface";
 import { ProductsApiService } from "./products.api.service";
 
@@ -26,8 +26,16 @@ export class ProductsStore {
 
     currentProduct$(productId: string) {
         const productPreview = this.productsStore$.value?.find(({_id}) => _id === productId);
+        console.log(productPreview, 'PRODUCT PREVIEW')
 
         this.currentProductStore$.next(productPreview || null);
+
+        this.productsApiService
+            .loadProduct(productId)
+            .subscribe(product => {
+                console.log(product, 'Product 1111')
+                this.currentProductStore$.next(product)
+            })
     }
 
 }
