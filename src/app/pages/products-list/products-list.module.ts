@@ -7,6 +7,7 @@ import { ProductsListComponent } from './products-list.component';
 import { RouterModule } from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import { ProductsListRoutingModule } from './products-list-routing.module';
 
 
 @NgModule({
@@ -20,7 +21,9 @@ import {MatIconModule} from '@angular/material/icon';
     PaginationModule,
     RouterModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    RouterModule,
+    ProductsListRoutingModule
   ],
   exports: [
     ProductsListComponent,

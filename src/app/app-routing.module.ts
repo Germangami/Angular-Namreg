@@ -1,11 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductsListComponent } from './pages/products-list/products-list.component';
-import { ProductComponent } from './pages/product/product.component';
 import { NotFoundModule } from './pages/not-found/not-found.module';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { DescriptionComponent } from './pages/product/description/description.component';
-import { TypeComponent } from './pages/product/type/type.component';
 
 const routes: Routes = [
   {
@@ -15,26 +11,11 @@ const routes: Routes = [
   },
   {
     path: 'products-list',
-    component: ProductsListComponent
+    loadChildren: () => import('./pages/products-list/products-list.module').then(m => m.ProductsListModule)
   },
   {
     path: 'product/:id',
-    component: ProductComponent,
-    children: [
-      {
-        path: 'description',
-      component: DescriptionComponent
-      },
-      {
-        path: 'type',
-        component: TypeComponent
-      },
-      {
-        path: '',
-        pathMatch: 'full',
-        redirectTo: 'description'
-      }
-    ]
+    loadChildren: () => import('./pages/product/product.module').then(m => m.ProductModule)
   },
   {
     path: '**',

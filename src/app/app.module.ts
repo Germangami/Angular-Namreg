@@ -13,8 +13,6 @@ import { baseUrl } from './shared/base-url/base-url.const';
 import { ProductsApiService } from './services/products.api.service';
 import { ProductsStore } from './services/products.store';
 import { HttpClientModule } from '@angular/common/http';
-import { ProductsListModule } from './pages/products-list/products-list.module';
-import { ProductModule } from './pages/product/product.module';
 
 
 @NgModule({
@@ -26,8 +24,6 @@ import { ProductModule } from './pages/product/product.module';
     AppRoutingModule,
     HeaderModule,
     BrowserAnimationsModule,
-    ProductsListModule,
-    ProductModule,
     SidenavModule,
     MatListModule,
     FormsModule,
