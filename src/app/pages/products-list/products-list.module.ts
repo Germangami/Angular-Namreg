@@ -8,6 +8,8 @@ import { RouterModule } from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { ProductsListRoutingModule } from './products-list-routing.module';
+import { CounterInputModule } from 'src/app/shared/counter-input/counter-input.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { ProductsListRoutingModule } from './products-list-routing.module';
     MatButtonModule,
     MatIconModule,
     RouterModule,
-    ProductsListRoutingModule
+    ProductsListRoutingModule,
+    CounterInputModule,
+    ReactiveFormsModule
   ],
   exports: [
     ProductsListComponent,

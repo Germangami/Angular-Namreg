@@ -1,15 +1,19 @@
 <div *ngIf="productsList$ | async as productsList; else: loader">
+
+    <app-counter-input [formControl]="counter"></app-counter-input>
+    <p *ngIf="counter.hasError('max')">Error</p>
     
     <div class="cards-container" *ngIf="productsList.length > 0">
         <ng-template #name 
-        appPagination 
+        appPagination
+        [showElements]="counter.value || 0"
         [allProductList]="productsList" 
         let-groupItems="productsGroup" 
         let-next="next" 
         let-back="back">
             
-          <div class="card-container" *ngFor="let product of groupItems">
-                <app-card
+          <div class="card-container">
+                <app-card *ngFor="let product of groupItems"
                     [product]="product"
                     [routerLink]="'/product/' + product._id">
                 </app-card>
@@ -17,8 +21,8 @@
 
             <div class="pagination-button">
                 <button mat-raised-button color="primary" (click)="next()">	
-                    <mat-icon>keyboard_arrow_right</mat-icon>
                     Next Page
+                    <mat-icon>keyboard_arrow_right</mat-icon>
                 </button>
                 <button mat-raised-button color="primary" (click)="back()">
                     <mat-icon>keyboard_arrow_left</mat-icon>

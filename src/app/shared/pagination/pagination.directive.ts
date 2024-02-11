@@ -10,9 +10,8 @@ export class PaginationDirective implements OnInit, OnChanges{
   showElements: number = 4;
 
   @Input()
-  allProductList!: IProduct[];
+  allProductList: IProduct[] = [];
 
-  public groupedItems: any[] = [];
   private allProductGroupList: any[][] = []
 
   private readonly currentIndex$ = new BehaviorSubject<number>(0);
@@ -23,15 +22,24 @@ export class PaginationDirective implements OnInit, OnChanges{
     private readonly template: TemplateRef<any>
   ) { }
 
-  ngOnChanges({appPaginationOf}: SimpleChanges): void {
-    if (appPaginationOf) {
-      this.viewContainerRef.clear();
-      this.updateView()
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['allProductList'] || changes['showElements']) {
+      this.currentIndex$.next(0);
+      this.allProductGroupList = this.getGroupedItems(this.allProductList, this.showElements);
+      this.initView();
     }
-
-    this.currentIndex$.next(0);
-
   }
+
+  // ngOnChanges({appPaginationOf}: SimpleChanges): void {
+  //   if (appPaginationOf) {
+  //     this.viewContainerRef.clear();
+  //     this.updateView()
+  //   }
+
+  //   this.currentIndex$.next(0);
+
+  // }
 
   ngOnInit(): void {
     this.allProductGroupList = this.getGroupedItems(this.allProductList, this.showElements);

@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { ProductsStore } from 'src/app/services/products.store';
 import { IProduct } from 'src/app/shared/product.interface';
@@ -14,8 +15,10 @@ import { IProduct } from 'src/app/shared/product.interface';
 export class ProductsListComponent implements OnInit {
   productsList$!: Observable<IProduct[] | null>;
 
+  counter = new FormControl(4, [Validators.max(6)]);
+
   constructor(
-    private readonly productsStore: ProductsStore,
+    private readonly productsStore: ProductsStore
   ) {}
 
   ngOnInit(): void {
