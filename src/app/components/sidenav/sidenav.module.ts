@@ -5,6 +5,7 @@ import { SidenavComponent } from './sidenav.component';
 import { MatButtonModule } from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
 import { InsertBorderModule } from 'src/app/shared/insert-border/insert-border.module';
+import { FilterModule } from '../filter/filter.module';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { InsertBorderModule } from 'src/app/shared/insert-border/insert-border.m
     MatSidenavModule,
     MatButtonModule,
     MatListModule,
-    InsertBorderModule
+    InsertBorderModule,
+    FilterModule
   ],
   exports: [
     SidenavComponent

@@ -1,0 +1,18 @@
+<form [formGroup]="filterForm" class="example-form">
+
+    <h2>Brands</h2>
+    
+    <mat-form-field class="example-full-width">
+        <mat-label>Search</mat-label>
+        <input type="text" matInput formControlName="search">
+    </mat-form-field>
+
+    <div class="brands-container" > 
+        <ng-container *ngIf="brands$ | async as brands" formArrayName="brands">
+            <div *ngFor="let brand of brands; let index = index">
+                <mat-checkbox [formControlName]="index">{{brand}}</mat-checkbox>
+            </div>
+        </ng-container>
+    </div>
+
+</form>

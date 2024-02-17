@@ -31,16 +31,6 @@ export class PaginationDirective implements OnInit, OnChanges{
     }
   }
 
-  // ngOnChanges({appPaginationOf}: SimpleChanges): void {
-  //   if (appPaginationOf) {
-  //     this.viewContainerRef.clear();
-  //     this.updateView()
-  //   }
-
-  //   this.currentIndex$.next(0);
-
-  // }
-
   ngOnInit(): void {
     this.allProductGroupList = this.getGroupedItems(this.allProductList, this.showElements);
     

@@ -1,10 +1,7 @@
 <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side" >
-      <p [ngClass]="{'red': isRed, 'blue': !isRed}" (click)="changeColor()">Auto-resizing sidenav</p>
       <mat-list role="list">
-        <mat-list-item appInsertBorderDirective role="listitem">Item 1</mat-list-item>
-        <mat-list-item appInsertBorderDirective role="listitem">Item 2</mat-list-item>
-        <mat-list-item appInsertBorderDirective role="listitem">Item 3</mat-list-item>
+        <app-filter></app-filter>
       </mat-list>
     </mat-drawer>
 

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { ProductsStore } from 'src/app/services/products.store';
+import { ProductsStore } from 'src/app/services/products-api/products.store';
 import { IProduct } from 'src/app/shared/product.interface';
 
 

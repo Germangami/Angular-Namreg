@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { filter, map, switchMap, take, tap } from 'rxjs';
-import { ProductsApiService } from 'src/app/services/products.api.service';
-import { ProductsStore } from 'src/app/services/products.store';
+import { ProductsApiService } from 'src/app/services/products-api/products.api.service';
+import { ProductsStore } from 'src/app/services/products-api/products.store';
 import { IProduct } from 'src/app/shared/product.interface';
 
 @Component({

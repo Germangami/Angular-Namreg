@@ -10,9 +10,9 @@ import {MatListModule} from '@angular/material/list';
 import { FormsModule } from '@angular/forms';
 import { BASE_URL } from './shared/base-url/base-url.token';
 import { baseUrl } from './shared/base-url/base-url.const';
-import { ProductsApiService } from './services/products.api.service';
-import { ProductsStore } from './services/products.store';
+import { ProductsApiService } from './services/products-api/products.api.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductsStore } from './services/products-api/products.store';
 
 
 @NgModule({
@@ -35,10 +35,6 @@ import { HttpClientModule } from '@angular/common/http';
     {
       provide: BASE_URL,
       useValue: baseUrl
-    },
-    {
-      provide: 'TEST',
-      useValue: 'test'
     }
   ],
   bootstrap: [AppComponent]
